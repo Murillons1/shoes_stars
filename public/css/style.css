@@ -3,7 +3,7 @@
 *{
     padding: 0;
     margin: 0;
-    overflow: hidden;
+    overflow: auto;
 }
 
 body{
@@ -37,7 +37,67 @@ header img{
     border: 1px solid #000000;  
 }
 
+span {
+    overflow: hidden;
+    max-height: min-content;
+
+}
+
 /* Header Navbar */
+
+
+
+.menu{
+    padding: 8px;
+    background-color: black;
+    display: block;
+    position: fixed;
+    width: 100vw;
+    height: 4vh;
+}
+.btn-menu{
+    background: linear-gradient(243.15deg, rgba(227, 65, 14, 0.74) ,#1D1D1D);
+    color: whitesmoke;
+    border: 1px solid black;
+}
+
+.navbar{   
+    position: absolute;
+    top: 15.8vh;
+    left: 1vw;
+    width: 97vw;
+    height: 20vh;
+    background: linear-gradient(243.15deg, rgba(227, 65, 14, 0.74) ,#1D1D1D);
+    color: #f5f5f5;
+    transition: 300ms;
+    cursor: pointer;
+    border-radius: 30px;
+}
+.navbar_ativo{
+    left: -200vw;
+    transition: 200ms;
+}
+
+
+a:visited{
+    color: whitesmoke;
+}
+.menu-itens{
+    list-style: none;
+    text-align: center;
+    font-size: 1.5rem;;
+}
+.menu-itens a{
+    text-decoration: none;
+    color: whitesmoke;
+    font-family: 'Inconsolata', monospace;
+}
+
+.menu-itens span{
+    position: absolute;
+    left: 40vw;
+}
+
 
 /* Main */
 .titulo {
@@ -61,9 +121,10 @@ header img{
 }
 .titulo p{
     text-align: center;
-   padding-left: 40%;
-   padding-right: 40%;
+   padding-left: 30%;
+   padding-right: 30%;
    font-size: 1.2rem;
+   font-family: 'Poppins', sans-serif;
 }
 
 /* Main Principal- */
