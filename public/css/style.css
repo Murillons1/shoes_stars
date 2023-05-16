@@ -11,14 +11,17 @@ body{
 
 /* Header */
 
+header{
+    background-color: #1D1D1D;
+}
+
 .links{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    font-size: 2rem;
-    padding: 12px;
-    
+    font-size: 1.5rem;
+    padding: 0%;
 }
 
 .links a{
@@ -56,22 +59,23 @@ span {
     height: 4vh;
 }
 .btn-menu{
-    background: linear-gradient(243.15deg, rgba(227, 65, 14, 0.74) ,#1D1D1D);
+   background-color: #1D1D1D;
     color: whitesmoke;
-    border: 1px solid black;
+    border: 1px solid #1D1D1D;
 }
 
 .navbar{   
     position: absolute;
-    top: 15.8vh;
+    top: 11.8vh;
     left: 1vw;
     width: 97vw;
-    height: 20vh;
+    height: 25vh;
     background: linear-gradient(243.15deg, rgba(227, 65, 14, 0.74) ,#1D1D1D);
     color: #f5f5f5;
     transition: 300ms;
     cursor: pointer;
     border-radius: 30px;
+    padding-top: 30px;
 }
 .navbar_ativo{
     left: -200vw;
@@ -162,4 +166,8 @@ a:visited{
     color: white;
     font-family: 'Inconsolata', monospace;
     padding-top: 6px;
+}
+
+footer{
+    background-color: #1D1D1D;
 }
