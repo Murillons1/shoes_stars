@@ -7,7 +7,11 @@
 }
 
 body{
-    background: linear-gradient(243.15deg, rgba(227, 65, 14, 0.74) ,#1D1D1D);}
+    background: linear-gradient(243.15deg, rgba(227, 65, 14, 0.74) ,#1D1D1D);
+
+
+
+}
 
 /* Header */
 
@@ -152,10 +156,10 @@ a:visited{
     height: 350px;
     border-radius: 20px 20px 0px 0px;
     box-shadow: 0px 10px 10px white;
-
+    
 }
 .todosj h3{
-    padding: 20px;
+    padding: 70px;
 }
 
 /*Footer */
@@ -170,4 +174,44 @@ a:visited{
 
 footer{
     background-color: #1D1D1D;
+}
+
+.redes_sociais{
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    width: auto;
+    padding-top: 30px;
+}
+
+.redes_sociais img{
+    background-color: white;
+    border-radius: 50%;
+    margin: 10px;
+    padding: 4px;    
+
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    
+}
+
+.info a{
+    text-decoration: none;
+    list-style: none;
+}
+
+.alert{
+    text-align: center;
+    padding-top: 30px;
+    font-size: 0.9rem;
+    color: white;
+    background-color: black;
 }
