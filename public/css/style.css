@@ -107,60 +107,7 @@ a:visited{
 }
 
 
-/* Main */
-.titulo {
-    display: flex;
-    flex-direction: column;
-    gap: 20px   ;
-    align-items: center;
-    color: rgb(244, 243, 243);
-   
 
-}
-
-.titulo h1{
-    padding-top: 30px;
-    font-size: 3rem;
-    box-shadow: 0px 3px 0px white;
-}
-
-.titulo h2{
-    font-size: 1.5rem;
-}
-.titulo p{
-    text-align: center;
-   padding-left: 30%;
-   padding-right: 30%;
-   font-size: 1.2rem;
-   font-family: 'Poppins', sans-serif;
-}
-
-/* Main Principal- */
-
-.todosj{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    padding-top: 30px;
-    text-align: center;
-    color: white;
-    font-family: monospace;
-    font-style: normal;
-    font-size: 1.5rem;
-    
-}
-
-
-
-.todosj img{
-    height: 350px;
-    border-radius: 20px 20px 0px 0px;
-    box-shadow: 0px 10px 10px white;
-    
-}
-.todosj h3{
-    padding: 70px;
-}
 
 /*Footer */
 

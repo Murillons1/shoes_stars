@@ -1,0 +1,26 @@
+{
+  "name": "shoes_stars",
+  "version": "1.0.0",
+  "description": "Site E-COMMERCE",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Murilloplax/shoes_stars.git"
+  },
+  "author": "Murillo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Murilloplax/shoes_stars/issues"
+  },
+  "homepage": "https://github.com/Murilloplax/shoes_stars#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-handlebars": "^7.0.7",
+    "handlebars": "^4.7.7",
+    "mysql2": "^3.3.3",
+    "sequelize": "^6.32.0"
+  }
+}
