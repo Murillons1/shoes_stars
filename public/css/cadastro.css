@@ -1,0 +1,11 @@
+*{
+    margin: 0;
+    padding:0;
+    text-align: center;
+}
+
+    form{
+        padding: 30px;
+        gap: 50px   ;
+        margin: 30px;
+    }

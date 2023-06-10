@@ -1,5 +1,5 @@
 const {Sequelize} = require("sequelize")
-const sequelize = new Sequelize("","","",{
+const sequelize = new Sequelize("shoes_stars","root","senai",{
     host: "localhost",
     dialect: "mysql"
 },{
@@ -8,10 +8,10 @@ const sequelize = new Sequelize("","","",{
 })
 
 
-sequelize.authenticate().then(()=>{
-    console.log("Conexão realizada com sucesso")
-}).catch((error)=>{
-    console.error("Não conseguiu conectar no banco de dados"+ error)
-})
+// sequelize.authenticate().then(()=>{
+//     console.log("Conexão realizada com sucesso")
+// }).catch((error)=>{
+//     console.error("Não conseguiu conectar no banco de dados"+ error)
+// })
 
 module.exports = sequelize

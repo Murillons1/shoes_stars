@@ -2,7 +2,7 @@ const express = require("express")
 const app = express()
 const exphbs = require("express-handlebars")
 const conn = require("./db/conn")
-
+const Dados = require("./models/Dados")
 const PORT = 3000
 const hostname ="localhost"
 
@@ -35,9 +35,22 @@ app.get("/lj",(req,res)=>{
     res.render("lj")
 })
 
-app.get("/perfil",(req,res)=>{
-    res.render("perfil")
+app.get("/cadastrar",(req,res)=>{
+    res.render("cadastro")
 })
+
+app.post("/dados",async(req,res)=>{
+    const nome = req.body.nome
+    const sobrenome = req.body.sobrenome
+    const cpf = req.body.cpf
+    const telefone = req.body.telefone
+    const endereco = req.body.endereco
+    const email = req.body.email
+    const senha = req.body.senha
+    console.log(nome,sobrenome,cpf,telefone,endereco,email,senha)
+    await Dados.create({nome,sobrenome,cpf,telefone,endereco,email,senha})
+    res.redirect("/")
+})  
 
 
 app.get("/pedidos",(req,res)=>{
@@ -53,6 +66,14 @@ app.get("/contato",(req,res)=>{
 
 
 //-----------------------------------------------------//
-app.listen(PORT,hostname,()=>{
-    console.log(`Servidor rodando ${hostname}:${PORT}`)
+
+conn.sync().then(()=>{
+    app.listen(PORT,hostname,()=>{
+        console.log(`Servidor rodando ${hostname}:${PORT}`)
+    })
+}
+).catch((error)=>{
+    console.error("Servidor não conectado" + error);
 })
+
+
