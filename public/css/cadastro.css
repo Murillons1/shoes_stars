@@ -4,8 +4,29 @@
     text-align: center;
 }
 
+h1{
+    color: whitesmoke;
+}
+
+
+
     form{
         padding: 30px;
         gap: 50px   ;
         margin: 30px;
+        color: whitesmoke;
     }
+
+    form input{
+        border-radius: 10px;
+        font-size: 15px;
+    }
+
+    form button{
+        padding: 20px;
+        margin: 10px;
+        border-radius: 30px ;
+        background: linear-gradient(243.15deg, rgba(227, 65, 14, 0.74) ,#1D1D1D);
+        color: whitesmoke;
+    }
+

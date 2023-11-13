@@ -24,6 +24,8 @@
     <title>Shoes Stars</title>
 </head>
 <body>
+
+    {{#if log}}
     <header class="cabecalho">
             <nav>
                 <ul class="links">
@@ -33,7 +35,65 @@
                             <img src="./icon/logo.ico" alt="Logo" class="logo">
                         </a>
                     </li>
+
+                    <li>
+                        <a>{{usuario}}</a>
+                    </li>
                     
+                    <li>
+                        <a href="/pg">Paul George</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/kd">Kevin Durant </a>
+                    </li>
+                
+                    <li>
+                        <a href="/lj">Lebron James</a>
+                    </li>
+               
+                    <li>
+                        <a href="/kw">Kawhi Leonard</a>
+                    </li>
+            
+                    <li>    
+                        <a href="/pedidos">
+                        im
+                        </a>
+                    </li>
+                    <li>    
+                        <button class="btn-menu btn_btn"><span class="material-symbols-outlined">menu</span></button>
+                    </li>
+                    
+                </ul>
+            </nav>
+        <div>
+
+       
+            <nav class="navbar navbar_ativo">
+                <ul clas="lista">
+                    <li class="menu-itens"><a href="/"><span class="material-symbols-outlined">home</span>&emsp;<sup>Principal</sup></a></li>
+                    <li class="menu-itens"><a href="/logout"><span class="material-symbols-outlined">person</span>&emsp;<sup>Logout</sup></a></li>
+                    <li class="menu-itens"><a href="/pedidos"><span class="material-symbols-outlined">public</span>&emsp;<sup>Meus pedidos</sup></a></li>
+                    <li class="menu-itens"><a href="/contato"><span class="material-symbols-outlined">mail</span>&emsp;<sup>Contato</sup></a></li>
+                </ul>
+            </nav>
+        </div>
+      
+    </header>
+
+    {{else}}
+
+     <header class="cabecalho">
+            <nav>
+                <ul class="links">
+                    
+                    <li>
+                        <a href="/">
+                            <img src="./icon/logo.ico" alt="Logo" class="logo">
+                        </a>
+                    </li>
+ 
                     <li>
                         <a href="/pg">Paul George</a>
                     </li>
@@ -63,6 +123,7 @@
                 <ul clas="lista">
                     <li class="menu-itens"><a href="/"><span class="material-symbols-outlined">home</span>&emsp;<sup>Principal</sup></a></li>
                     <li class="menu-itens"><a href="/cadastrar"><span class="material-symbols-outlined">person</span>&emsp;<sup>Cadastro</sup></a></li>
+                    <li class="menu-itens"><a href="/login"><span class="material-symbols-outlined">person</span>&emsp;<sup>Login</sup></a></li>
                     <li class="menu-itens"><a href="/pedidos"><span class="material-symbols-outlined">public</span>&emsp;<sup>Meus pedidos</sup></a></li>
                     <li class="menu-itens"><a href="/contato"><span class="material-symbols-outlined">mail</span>&emsp;<sup>Contato</sup></a></li>
                 </ul>
@@ -70,7 +131,11 @@
         </div>
       
     </header>
+
+{{/if}}
+    <main>
   {{{body}}}
+    </main>
     <footer>
        
         <div class="redes_sociais">

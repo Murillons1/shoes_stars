@@ -1,18 +1,17 @@
-
 const { DataTypes } = require("sequelize")
 const db = require("../db/conn")
 
 
-const Dados = db.define("cadastro",{
+const Usuario = db.define("usuario",{
     nome : {
         type:DataTypes.STRING(30)
     },
 
-    sobrenome : {
+    email : {
         type:DataTypes.STRING(30)
     },
 
-    cpf : {
+    senha : {
         type:DataTypes.STRING(50)
     },
 
@@ -20,15 +19,10 @@ const Dados = db.define("cadastro",{
         type:DataTypes.STRING(50)
     },
 
-    endereco : {
-        type:DataTypes.STRING(100)
+    cpf : {
+        type:DataTypes.STRING(50)
     },
-
-    email : {
-        type:DataTypes.STRING(100)
-    },
-
-    senha : {
+    tipo : {
         type:DataTypes.STRING(50)
     }
 
@@ -38,8 +32,8 @@ const Dados = db.define("cadastro",{
     updatedAt:false
 })
 
-// Criar_conta.sync({force:true})
+// Usuario.sync({force:true})
 
-module.exports = Dados
+module.exports = Usuario
 
 

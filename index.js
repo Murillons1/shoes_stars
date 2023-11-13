@@ -2,10 +2,12 @@ const express = require("express")
 const app = express()
 const exphbs = require("express-handlebars")
 const conn = require("./db/conn")
-const Dados = require("./models/Dados")
+const Usuarios = require("./models/Usuarios")
 const PORT = 3000
 const hostname ="localhost"
 
+let  log = false
+let usuario = ""
 
 //----------------------express-----------------------------//
 app.use(express.urlencoded({extended:true}))
@@ -15,8 +17,13 @@ app.use(express.static("public"))
 app.set("view engine","handlebars")
 app.engine("handlebars",exphbs.engine())
 //--------------------------------------------------------//
+app.get("/logout",(req,res)=>{
+    log = false
+    res.render("home", {log})
+})
+
 app.get("/",(req,res)=>{
-    res.render("home")
+    res.render("home", {log})
 })
 
 app.get("/pg",(req,res)=>{
@@ -39,16 +46,39 @@ app.get("/cadastrar",(req,res)=>{
     res.render("cadastro")
 })
 
-app.post("/dados",async(req,res)=>{
-    const nome = req.body.nome
-    const sobrenome = req.body.sobrenome
-    const cpf = req.body.cpf
-    const telefone = req.body.telefone
-    const endereco = req.body.endereco
+app.get("/login",(req,res)=>{
+    res.render("login")
+})
+
+app.post("/login",async(req,res)=>{
     const email = req.body.email
     const senha = req.body.senha
-    console.log(nome,sobrenome,cpf,telefone,endereco,email,senha)
-    await Dados.create({nome,sobrenome,cpf,telefone,endereco,email,senha})
+
+    const pesq = await Usuarios.findOne({raw:true, where: {email:email, senha:senha}})
+
+    if(pesq == null){
+        res.render("home", {log})
+    }
+    if(pesq.email === email && pesq.senha === senha){
+        let usuario = pesq.nome
+        log = true
+        res.render("home", {log, usuario})
+    }else{
+        res.redirect("/")
+    }
+
+})
+
+app.post("/cadastro",async(req,res)=>{
+    const nome = req.body.nome
+    const email = req.body.email
+    const senha = req.body.senha
+    const cpf = req.body.cpf
+    const telefone = req.body.telefone
+    const tipo = req.body.tipo
+
+    await Usuarios.create({nome,email,senha,cpf,telefone})
+
     res.redirect("/")
 })  
 
