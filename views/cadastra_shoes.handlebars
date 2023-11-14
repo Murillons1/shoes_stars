@@ -1,0 +1,27 @@
+<br>
+<nav>
+    <a href="/cadastra_shoes">Cadastrar Sneakers</a>&emsp;
+    <a href="/lista_shoes">Listar Sneakers</a>&emsp;
+    <a href="/atualiza_shoes">Editar Sneakers</a>&emsp;
+    <a href="/apaga_shoes">Excluir Sneakers</a>
+</nav>
+<br><br>
+<form action="/cadastrar_sneakers" method="post">
+    <label for="nome">Nome do Produto:</label><br>
+    <input type="text" name="nome" placeholder="nome do Sneakers"><br>
+    <label for="tamanho">Tamanho do Produto:</label><br>
+    <input type="text" name="tamanho" placeholder="38"><br>
+    <label for="cor">Cor do Produto:</label><br>
+    <input type="text" name="cor" placeholder="marron"><br>
+    <label for="quantidadeEstoque">Quantidade do Produto:</label><br>
+    <input type="text" name="quantidadeEstoque" placeholder="quantidade"><br>
+    <label for="precoUnitario">Preço unitário do Produto:</label><br>
+    <input type="text" name="precoUnitario" placeholder="unitário"><br>
+    <label for="descricao">Descrição do Produto:</label><br>
+    <input type="text" name="descricao" placeholder="Descrição"><br>
+    <br><br>
+    <button type="submit">Cadastrar Sneakers</button>
+</form>
+{{#if msg}}
+    <p>{{msg}}</p>
+{{/if}} 

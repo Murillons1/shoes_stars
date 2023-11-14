@@ -52,7 +52,11 @@ span {
 
 /* Header Navbar */
 
-
+#carrinho_icon{
+    width: 2vw;
+    height: 4vh;
+    color: white;
+}
 
 .menu{
     padding: 8px;
