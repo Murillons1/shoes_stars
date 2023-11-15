@@ -23,37 +23,33 @@ app.engine("handlebars",exphbs.engine())
 app.get("/logout",(req,res)=>{
     log = false
     usuario = ''
-    res.render('home', {log, usuario})
+    res.render('home', {log, usuario , tipoUsuario})
 })
 
 //---------------------Paul-George------------------------//
 
 app.get("/pg",(req,res)=>{
-    usuario = ''
-    res.render("pg", {log, usuario})
+    res.render("pg", {log, usuario , tipoUsuario})
 })
 
 
 //--------------------Kawhi-Leonard-----------------------//
 
 app.get("/kw",(req,res)=>{
-    usuario = ''
-    res.render("kw", {log, usuario})
+    res.render("kw", {log, usuario , tipoUsuario})
 })
 
 //--------------------Kevin-Durant-----------------------//
 
 app.get("/kd",(req,res)=>{
-    usuario = ''
-    res.render("kd", {log, usuario})
+    res.render("kd", {log, usuario , tipoUsuario})
 })
 
 //--------------------Lebron-James-----------------------//
 
 
 app.get("/lj",(req,res)=>{
-    usuario = ''
-    res.render("lj", {log, usuario})
+    res.render("lj", {log, usuario , tipoUsuario})
 })
 
 
@@ -74,7 +70,7 @@ app.post("/cadastro",async(req,res)=>{
 
 app.get("/cadastrar",(req,res)=>{
     usuario = ''
-    res.render("cadastro", {log, usuario})
+    res.render("cadastro", {log, usuario , tipoUsuario})
 })
 
 //--------------------Login-de-Conta-----------------------//
@@ -109,7 +105,7 @@ app.post("/login",async(req,res)=>{
 app.get("/login",(req,res)=>{
     log = false
     usuario = ''
-    res.render("login",{log, usuario})
+    res.render("login",{log, usuario , tipoUsuario})
 })
 
 //--------------------Pedidos-do-Carrinho-----------------------//
@@ -144,8 +140,7 @@ try{
 
 
 app.get("/pedidos",(req,res)=>{
-    usuario = ''
-    res.render("pedidos", {log, usuario})
+    res.render("pedidos", {log, usuario , tipoUsuario})
 })
 
 
@@ -158,7 +153,7 @@ app.post('/cadastrar_sneakers', async (req,res)=>{
     const precoUnitario = req.body.precoUnitario
     const descricao = req.body.descricao
     console.log(nome,tamanho, cor, quantidadeEstoque, precoUnitario, descricao)
-    await Sneakers.create({nome:nome, tamanho:tamanho, cor: cor, quantidadeEstoque: quantidadeEstoque, precoUnitario: precoUnitario, descricao: descricao})
+    await Sneakers.create({nome, tamanho, cor, quantidadeEstoque, precoUnitario, descricao})
     let msg = 'Dados Cadastrados'
     res.render('cadastra_shoes', {log, usuario, tipoUsuario, msg})
 })
@@ -187,47 +182,87 @@ app.post('/consulta_sneakers', async (req,res)=>{
 
 //-----------------------Editar-Shoes------------------------//
 
-app.post('/atualiza_shoes', async (req,res)=>{
+app.post('/editar_sneakers', async (req,res)=>{
+    const  id = req.body.id
     const nome = req.body.nome
     const tamanho = Number(req.body.tamanho)
     const cor = req.body.cor
     const quantidadeEstoque = Number(req.body.quantidadeEstoque)
     const precoUnitario = Number(req.body.precoUnitario)
     const descricao = req.body.descricao
-    console.log(nome,tamanho, cor, quantidadeEstoque, precoUnitario, descricao)
-    const dados = await Sneakers.findOne({raw:true, where: {nome:nome_produto}})
-    console.log(dados)
-    res.redirect('/atualiza_shoes')
+    const msg = "Dados Atualizados"
 
+    const nome_sneaker = await Sneakers.findOne({raw:true, where: {id:id}})
+
+    if(nome_sneaker != null){
+       const dados = {
+        id:id,
+        nome:nome,
+        tamanho:tamanho,
+        cor:cor,
+        quantidadeEstoque:quantidadeEstoque,
+        precoUnitario:precoUnitario,
+        descricao:descricao
+       }
+        if(nome_sneaker.id === nome_sneaker.id){
+        await Sneakers.update(dados,{where: {id:id}})
+        res.render("atualiza_shoes",{log,usuario,msg})
+        }else{
+        res.redirect('/atualiza_shoes')
+    
+
+    }}
 })
 
 
 app.get('/atualiza_shoes', (req,res)=>{
-    res.render('atualiza_shoes', {log, usuario, tipoUsuario})
+    res.render('atualiza_shoes', {log, usuario , tipoUsuario})
 })
 
 //-------------------------Apaga-Shoes------------------------//
+app.post("/apaga_shoes",async(req,res)=>{
+    const id = req.body.id
+    const nome = req.body.nome
+    const msg = "Não foi possivel encontrar o Sneaker"
 
+    const pesq = await Sneakers.findOne({raw:true , where: {id:id, nome:nome}})
 
-app.get("/apaga_shoes",(req,res)=>{
-    usuario = ''
-    res.render("apaga_shoes", {log, usuario})
+    if(pesq == null){
+        res.render("apaga_shoes",{log,usuario, msg})
+    }
+    else if(pesq.id === pesq.id && pesq.nome === pesq.nome){
+        await Sneakers.destroy({raw:true, where: {id:id}})
+        res.render("apaga_shoes", {log,usuario})
+    }else{
+        res.redirect("apaga_shoes")
+    }
 })
 
+app.get("/apaga_shoes",(req,res)=>{
+    res.render("apaga_shoes", {log, usuario , tipoUsuario})
+})
+//--------------------Página-de-Privacidade-----------------------//
+app.get("/politica",(req,res)=>{
+    res.render("privacidade", {log, usuario , tipoUsuario})
+})
+
+//--------------------Página-de-Sobre-----------------------//
+
+app.get("/sobre",(req,res)=>{
+    res.render("sobre", {log, usuario , tipoUsuario})
+})
 
 //--------------------Página-de-Contato-----------------------//
 
 
 app.get("/contato",(req,res)=>{
-    usuario = ''
-    res.render("contato", {log, usuario})
+    res.render("contato", {log, usuario , tipoUsuario})
 })
 
 //---------------Rota principal-e-Callback--------------
 
 app.get("/",(req,res)=>{
-    usuario = ''
-    res.render('home', {log, usuario})
+    res.render('home', {log, usuario, tipoUsuario})
 })
 
 

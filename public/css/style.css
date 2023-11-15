@@ -157,6 +157,7 @@ footer{
 .info a{
     text-decoration: none;
     list-style: none;
+    color: white;
 }
 
 .alert{

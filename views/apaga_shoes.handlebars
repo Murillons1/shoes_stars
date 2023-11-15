@@ -1,0 +1,24 @@
+    <link rel="stylesheet" href="/css/apaga_shoes.css">
+
+<br>
+<nav>
+    <a href="/cadastra_shoes">Cadastrar Sneakers</a>&emsp;
+    <a href="/lista_shoes">Listar Sneakers</a>&emsp;
+    <a href="/atualiza_shoes">Editar Sneakers</a>&emsp;
+    <a href="/apaga_shoes">Excluir Sneakers</a>
+</nav>
+<br>
+<h1>Apagar Sneakers</h1>
+
+ <form action="/apaga_shoes" method="post">
+ <label for="id">Qual o id do Sneker:</label><br>
+ <input type="text" name="id" placeholder="1"><br>
+ <label for="nome">Qual o nome do Sneaker:</label><br>
+ <input type="text" name="nome" placeholder="nome do Sneakers"><br>
+ 
+ <button type="submit">Apagar Sneaker</button>
+ 
+ </form>
+ {{#if msg}}
+    <p>{{msg}}</p>
+{{/if}} 

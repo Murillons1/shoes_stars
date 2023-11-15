@@ -4,4 +4,33 @@
 
 nav{
     font-size: 18px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    
 }
+
+table,th,td{
+    border-collapse: collapse;
+    border: 2px solid white;
+    margin: auto;
+   
+}
+th{
+    color: white;
+    font-weight: bold;
+    font-size: 1.5rem;
+    padding: 0px 4px;
+}
+td{
+    color: white;
+    text-align: center;
+    font-size: 1.5rem;
+    padding: 0px 4px;
+}
+
+h2{
+    font-size: 20px;
+    color: whitesmoke;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+

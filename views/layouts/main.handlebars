@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="/css/home.css">
     <link rel="stylesheet" href="/css/gerenciador.css">
 
-
                 {{!-- Script --}}
     
     <script src="/js/navbar.js" defer></script>
@@ -38,7 +37,7 @@
                     </li>
 
                     <li>
-                        <a>{{usuario}}</a>
+                        <a>{{tipoUsuario}} : {{usuario}}</a>
                     </li>
                     
                     <li>
@@ -138,7 +137,7 @@
     <main>
   {{{body}}}
     </main>
-    <footer>
+    <footer class="fp">
        
         <div class="redes_sociais">
             <img src="./img/facebook.png" alt="facebook">&emsp;&emsp;
@@ -148,10 +147,9 @@
         </div> 
 
         <div class="info">
-            <a href="">Politicas de privacidade</a>&emsp;
-            <a href="">Sobre</a>&emsp;
-            <a href="">Contate-nos</a>&emsp;
-            <a href="">Termos</a>&emsp;
+            <a href="/politica">Politicas de privacidade</a>&emsp;
+            <a href="/sobre">Sobre</a>&emsp;
+            <a href="/contato">Contate-nos</a>&emsp;
         </div>
         
         <div class="alert">
