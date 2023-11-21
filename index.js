@@ -147,13 +147,11 @@ app.get("/pedidos",(req,res)=>{
 //--------------------Cadastro-Shoes------------------------//
 app.post('/cadastrar_sneakers', async (req,res)=>{
     const nome = req.body.nome
-    const tamanho = req.body.tamanho
-    const cor = req.body.cor
     const quantidadeEstoque = req.body.quantidadeEstoque
     const precoUnitario = req.body.precoUnitario
     const descricao = req.body.descricao
     console.log(nome,tamanho, cor, quantidadeEstoque, precoUnitario, descricao)
-    await Sneakers.create({nome, tamanho, cor, quantidadeEstoque, precoUnitario, descricao})
+    await Sneakers.create({nome, quantidadeEstoque, precoUnitario, descricao})
     let msg = 'Dados Cadastrados'
     res.render('cadastra_shoes', {log, usuario, tipoUsuario, msg})
 })
@@ -185,8 +183,6 @@ app.post('/consulta_sneakers', async (req,res)=>{
 app.post('/editar_sneakers', async (req,res)=>{
     const  id = req.body.id
     const nome = req.body.nome
-    const tamanho = Number(req.body.tamanho)
-    const cor = req.body.cor
     const quantidadeEstoque = Number(req.body.quantidadeEstoque)
     const precoUnitario = Number(req.body.precoUnitario)
     const descricao = req.body.descricao
@@ -198,8 +194,6 @@ app.post('/editar_sneakers', async (req,res)=>{
        const dados = {
         id:id,
         nome:nome,
-        tamanho:tamanho,
-        cor:cor,
         quantidadeEstoque:quantidadeEstoque,
         precoUnitario:precoUnitario,
         descricao:descricao

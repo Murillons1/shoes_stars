@@ -6,15 +6,6 @@ const Sneakers = db.define("sneakers",{
     nome : {
         type:DataTypes.STRING(50)
     },
-
-    tamanho : {
-        type:DataTypes.INTEGER
-    },
-
-    cor : {
-        type:DataTypes.STRING(50)
-    },
-
     quantidadeEstoque : {
         type:DataTypes.INTEGER
     },
