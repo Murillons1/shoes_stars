@@ -1,17 +1,23 @@
 *{
-    padding: 0;
     margin: 0;
-    text-align: center;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
 }
 
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+}
 
-.fundo{
-    background-color: whitesmoke;
+textarea{
+    border-radius: 10px ;
     font-size: 15px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-
 }
 
-.fundo h1{
-    font-size: 20px;
+p{
+    padding: 80px;
 }

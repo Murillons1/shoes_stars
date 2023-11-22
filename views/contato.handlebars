@@ -3,15 +3,23 @@
 
 
 <form action="/contato" method="post">
-<div class="fundo">
-    <h1>Contato</h1>
+
+    <h1>Contato:</h1>
     <br>
-    <h2>
-        Número :(51)9762-8879
-    </h2>
+    <label for="nome">Qual o seu Nome?</label>
+    <input type="text" name="nome" placeholder="Digite aqui">
+    <br>
     <label for="email">Qual o seu email?</label>
     <input type="text" name="email" placeholder="Digite aqui">
     <br>
-    <button type="submit">Recuperar senha</button>
-</div>
+    <label for="mensagem">Digite sua Mensagem?</label>
+    <textarea name="mensagem"  cols="40" rows="10" placeholder="digite aqui"></textarea>
+    <button type="submit">Enviar</button>
+
 </form>
+
+{{#if msg}}
+<p>{{msg}}</p>
+{{else}}
+<p>{{ms2}}</p>
+{{/if}}

@@ -4,6 +4,7 @@ const exphbs = require("express-handlebars")
 const conn = require("./db/conn")
 const Usuarios = require("./models/Usuarios")
 const Sneakers = require("./models/Sneakers")
+const e = require("express")
 
 const PORT = 3000
 const hostname ="localhost"
@@ -247,6 +248,14 @@ app.get("/sobre",(req,res)=>{
 })
 
 //--------------------Página-de-Contato-----------------------//
+app.post("/contato",async(req,res)=>{
+    const nome  = req.body.nome
+    const email = req.body.email
+    const msg = "Enviado para o suporte com sucesso !!"
+    await Usuarios.findOne({raw:true, where: {nome:nome,email:email}})
+
+   res.render("contato",{log,usuario,tipoUsuario,msg})
+})
 
 
 app.get("/contato",(req,res)=>{
