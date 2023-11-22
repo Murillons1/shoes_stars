@@ -14,8 +14,11 @@
     <label for="telefone">Qual seu telefone?</label><br>   
     <input type="text" name="telefone"><br>
     <label for="tipo">Qual seu tipo de conta?</label><br>   
-    <input type="text" name="tipo"><br><br>
+    <input type="text" name="tipo" placeholder="admin ou cliente"><br><br>
 
     <button type="submit">Criar conta</button>
 </form>
 
+{{#if msg}}
+<p>{{msg}}</p>
+{{/if}}

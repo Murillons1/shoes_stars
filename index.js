@@ -2,9 +2,9 @@ const express = require("express")
 const app = express()
 const exphbs = require("express-handlebars")
 const conn = require("./db/conn")
+const bcrypt = require("bcrypt")
 const Usuarios = require("./models/Usuarios")
 const Sneakers = require("./models/Sneakers")
-const e = require("express")
 
 const PORT = 3000
 const hostname ="localhost"
@@ -55,18 +55,39 @@ app.get("/lj",(req,res)=>{
 
 
 //--------------------Cadastro-de-Conta-----------------------//
-app.post("/cadastro",async(req,res)=>{
-    const nome = req.body.nome
-    const email = req.body.email
-    const senha = req.body.senha
-    const cpf = req.body.cpf
-    const telefone = req.body.telefone
-    const tipo = req.body.tipo
+app.post("/cadastro", async (req, res) => {
+    const nome = req.body.nome;
+    const email = req.body.email;
+    const senha = req.body.senha;
+    const cpf = req.body.cpf;
+    const telefone = req.body.telefone;
+    const tipo = req.body.tipo;
+    const msg = "Preencha todos os dados!!"
 
-    await Usuarios.create({nome,email,senha,cpf,telefone,tipo})
+    if(!nome  || !email  || !senha  || !cpf  || !telefone || !tipo){
+        res.render("cadastro",{log,msg,usuario,tipoUsuario})
+    }else{
+    bcrypt.hash(senha, 10, async (err, hash) => {
+        if (err) {
+            console.error("Erro ao criar o hash da senha" + err);
+            res.render("home", { log });
+            return;
+        }
+        try {
+            await Usuarios.create({nome: nome,email: email,senha: hash, cpf: cpf,telefone: telefone,tipo: tipo,});
+            log = true;
+            usuario = nome
+            tipoUsuario = tipo
+            res.render('home', { log,usuario,tipoUsuario });
+        } catch (error) {
+            console.error("Erro ao criar a senha" + error);
+            res.render('home', { log ,usuario,tipoUsuario});
+        }
+    }); 
+    }
 
-    res.redirect("/")
-})  
+
+});
 
 
 app.get("/cadastrar",(req,res)=>{
@@ -76,32 +97,34 @@ app.get("/cadastrar",(req,res)=>{
 
 //--------------------Login-de-Conta-----------------------//
 
-app.post("/login",async(req,res)=>{
-    const email = req.body.email
-    const senha = req.body.senha
+app.post("/login", async (req, res) => {
+    const email = req.body.email;
+    const senha = req.body.senha;
 
-    const pesq = await Usuarios.findOne({raw:true, where: {email:email, senha:senha}})
+    const pesq = await Usuarios.findOne({ where: { email: email } });
 
-    let msg = 'Usuário não Cadastrado'
-    if(pesq == null){
-        res.render('home', {msg})
-    }else if(email == pesq.email && senha == pesq.senha && pesq.tipo === 'admin'){
-        log = true
-        usuario = pesq.nome
-        tipoUsuario = pesq.tipo
-        res.render('gerenciador', {log, usuario, tipoUsuario})        
-    }else if(email == pesq.email && senha == pesq.senha && pesq.tipo === 'cliente'){
-        log = true
-        usuario = pesq.nome
-        tipoUsuario = pesq.tipo
-        console.log(usuario)
-        res.render('home', {log, usuario, tipoUsuario})
-        
-    }else{
-        res.render('home', {msg})
+    if (!pesq) {
+        return res.render('login', { log, msg: 'Usuário não cadastrado' });
     }
-    // res.redirect('/')
-})
+
+    bcrypt.compare(senha, pesq.senha, (err, result) => {
+        if (err || !result) {
+            return res.render('login', { log, msg: 'Senha incorreta' });
+        }
+
+        log = true;
+        usuario = pesq.nome;
+        tipoUsuario = pesq.tipo;
+
+        if (tipoUsuario === 'admin') {
+            res.render('gerenciador', { log, usuario, tipoUsuario });
+        } else if (tipoUsuario === 'cliente') {
+            res.render('home', { log, usuario, tipoUsuario });
+        } else {
+        }
+    });
+});
+
 
 app.get("/login",(req,res)=>{
     log = false
@@ -111,34 +134,28 @@ app.get("/login",(req,res)=>{
 
 //--------------------Pedidos-do-Carrinho-----------------------//
 
-app.post("/comprar",async(req,res)=>{
-    const dados_carrinho = req.body
-    console.log(dados_carrinho)
-
-    const atualiza_promise = []
-
-    for(const item of dados_carrinho){
-        const produto = await Sneakers.findByPk(item.cod_prod)
-        console.log(produto)
-        if(produto || produto.quantidadeEstoque < item.qtde){
-             return res.status(400).json({message:"Produto não Disponivel" + produto.quantidadeEstoque})
-        }
-    }
-    const atualiza_promessas = await Sneakers.update(
-        {quantidadeEstoque: produto.quantidadeEstoque - item.qtde,
-        where: {id:cod_}
-})
-    atualiza_promise.push(atualiza_promessas)
+app.post("/comprar", async (req, res) => {
+    const carrinho = req.body;
   
-try{
-    await Promise.all(atualiza_promise)
-    res.status(200).json({message:"compra realizada com sucesso!"})
-}catch(error){
-    console.error("Não foi possivel realizar a compra"+error)
-    res.status(500).json({message: "Erro ao processar a compra"})
-} 
-})
-
+    try {
+      for (const item of carrinho) {
+        const produto = await Sneakers.findByPk(item.cod_prod);
+  
+        if (!produto || produto.quantidadeEstoque < item.qtde) {
+          return res.status(400).json({ success: false, error: 'Produto não disponível' });
+        }
+  
+        produto.quantidadeEstoque -= item.qtde;
+        await produto.save();
+      }
+  
+      return res.status(200).json({ success: true, message: 'Compra realizada com sucesso!' });
+    } catch (error) {
+      console.error('Erro ao processar a compra:', error);
+      return res.status(500).json({ success: false, error: 'Erro ao processar a compra' });
+    }
+  });
+  
 
 app.get("/pedidos",(req,res)=>{
     res.render("pedidos", {log, usuario , tipoUsuario})
@@ -225,7 +242,7 @@ app.post("/apaga_shoes",async(req,res)=>{
     if(pesq == null){
         res.render("apaga_shoes",{log,usuario, msg})
     }
-    else if(pesq.id === pesq.id && pesq.nome === pesq.nome){
+    else if(pesq.id === pesq.id || pesq.nome === pesq.nome){
         await Sneakers.destroy({raw:true, where: {id:id}})
         res.render("apaga_shoes", {log,usuario})
     }else{
@@ -236,6 +253,12 @@ app.post("/apaga_shoes",async(req,res)=>{
 app.get("/apaga_shoes",(req,res)=>{
     res.render("apaga_shoes", {log, usuario , tipoUsuario})
 })
+
+//--------------------------Gráfico-------------------------------//
+app.get("/grafico_shoes",(req,res)=>{
+    res.render("grafico_shoes", {log, usuario , tipoUsuario})
+})
+
 //--------------------Página-de-Privacidade-----------------------//
 app.get("/politica",(req,res)=>{
     res.render("privacidade", {log, usuario , tipoUsuario})

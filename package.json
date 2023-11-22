@@ -17,10 +17,12 @@
   },
   "homepage": "https://github.com/Murilloplax/shoes_stars#readme",
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "express": "^4.18.2",
     "express-handlebars": "^7.0.7",
     "handlebars": "^4.7.7",
     "mysql2": "^3.3.3",
+    "save": "^2.9.0",
     "sequelize": "^6.32.0"
   }
 }
