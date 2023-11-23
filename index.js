@@ -255,6 +255,12 @@ app.get("/apaga_shoes",(req,res)=>{
 })
 
 //--------------------------Gráfico-------------------------------//
+app.get('/grafic', async (req,res)=>{
+    const pesq = await Sneakers.findAll({raw:true})
+    console.log(pesq)
+    res.status(200).json(pesq)
+})
+
 app.get("/grafico_shoes",(req,res)=>{
     res.render("grafico_shoes", {log, usuario , tipoUsuario})
 })

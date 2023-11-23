@@ -1,0 +1,33 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+
+.grafic_bar{
+    margin: auto;
+}
+
+#grafic_barra {
+    width:calc(20vw + 6px);
+    height:calc(8vw + 6px);
+    background-image: linear-gradient(90deg, #FFCF00 0%, #FFCF00 49%, #FC4F4F 80%, #FC4F4F 40%);
+    border-radius:5px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-transform:uppercase;
+    font-size:3vw;
+    font-weight:bold;
+    margin: auto;
+  }
+  #grafic_barra:after {
+    content:attr(alt);
+    height:8vw;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  #grafic_barra:hover {
+    animation:slidebg 2s linear infinite;
+  }
