@@ -30,7 +30,7 @@ Faça as alterações necessárias e adicione os commits correspondentes (git co
 Faça o push para o branch criado (git push origin minha-funcionalidade).
 Abra um Pull Request neste repositório e aguarde a análise e aprovação.
 ## Links
-Deploy no Netlify: https://shoesstars.netlify.app/
+Deploy no Netlify: https://shoesstars.netlify.app/ <br/>
 Repositório: https://github.com/Murillons1/shoes_stars
 ## Créditos
 As imagens dos tênis utilizadas na loja são de propriedade de seus respectivos fabricantes.
