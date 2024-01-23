@@ -1,4 +1,4 @@
-(http://localhost:3000/).
+([Imagem Página Incial](https://github.com/Murillons1/shoes_stars/blob/main/12.png?raw=true)).
 ## Descrição
 O projeto consiste no desenvolvimento de um e-commerce de sneakers, uma plataforma online para compra e venda de tênis. O objetivo é proporcionar uma experiência de compra agradável para os usuários, oferecendo uma variedade de modelos de tênis e facilitando o processo de compra e pagamento.
 
